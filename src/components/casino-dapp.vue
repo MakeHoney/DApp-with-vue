@@ -1,9 +1,13 @@
 <template>
- <hello-metamask/>
+  <div>
+    <casino-component/>
+    <hello-metamask/>
+  </div>
 </template>
 
 <script>
 import HelloMetamask from '@/components/hello-metamask'
+import CasinoComponent from '@/components/casino-component'
 export default {
  name: 'casino-dapp',
  beforeCreate() {
@@ -11,7 +15,8 @@ export default {
    this.$store.dispatch('registerWeb3')
  },
  components: {
- 'hello-metamask': HelloMetamask
+ 'hello-metamask': HelloMetamask,
+ 'casino-component': CasinoComponent
  }
 }
 </script>
