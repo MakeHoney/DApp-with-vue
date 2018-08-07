@@ -20,6 +20,10 @@
     Won: {{ winEvent._status }}
     Amount: {{ winEvent._amount }} Wei
   </div>
+    <div class='event' v-if='winEvent'>
+     <p v-if='winEvent._status' id='has-won'><i aria-hidden='true' class='fa fa-check'></i> Congragulations, you have won {{winEvent._amount}} wei</p>
+     <p v-else id='has-lost'><i aria-hidden='true' class='fa fa-check'></i> Sorry you lost, please try again.</p>
+    </div>
  </div>
 </template>
 
@@ -40,6 +44,7 @@ export default {
   methods: {
     clickNumber (event) {
       console.log(event.tartget.innerHTML, this.amount)
+      this.winEvent._amount = parseInt(result.args._amount, 10)
       this.winEvent = null
       this.pending = true
       /* getContractInstance? */
@@ -104,5 +109,11 @@ li:active{
 }
 *{
  color: #444444;
+}
+#has-won {
+  color: green;
+}
+#has-lost {
+  color:red;
 }
 </style>
