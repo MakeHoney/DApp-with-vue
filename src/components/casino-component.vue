@@ -43,12 +43,11 @@ export default {
   },
   methods: {
     clickNumber (event) {
-      console.log(event.tartget.innerHTML, this.amount)
-      this.winEvent._amount = parseInt(result.args._amount, 10)
+      console.log('BETTING ON NUMBER, AMOUNT', event.target.innerHTML, this.amount)
       this.winEvent = null
       this.pending = true
       /* getContractInstance? */
-      this.$store.state.contractInstance().bet(event.tartget.innerHTML, {
+      this.$store.state.contractInstance().bet(event.target.innerHTML, {
         gas: 300000,
         value: this.$store.state.web3.web3Instance().toWei(this.amount, 'ether'),
         from: this.$store.state.web3.coinbase
@@ -63,6 +62,7 @@ export default {
               console.log('could not get event Won()')
             } else {
               this.winEvent = result.args
+              this.winEvent._amount = parseInt(result.args._amount, 10)
               this.pending = false
             }
           })
