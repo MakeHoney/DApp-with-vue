@@ -34,14 +34,22 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    registerWeb3 ({ commit }) {
+    async registerWeb3 ({ commit }) {
       console.log('registerWeb3 Action being executed');
-      getWeb3.then(result => {
+      // const getWeb3 = await getWeb3()??
+      try {
+        let result = await getWeb3();
         console.log('committing result to registerWeb3Instance mutation');
         commit('registerWeb3Instance', result);
-      }).catch(e => {
-        console.log('error in action registerWeb3', e);
-      });
+      } catch(err) {
+        console.log('error in action registerWeb3', err);
+      }
+      // getWeb3.then(result => {
+      //   console.log('committing result to registerWeb3Instance mutation');
+      //   commit('registerWeb3Instance', result);
+      // }).catch(e => {
+      //   console.log('error in action registerWeb3', e);
+      // });
     },
     pollWeb3({ commit }, payload) {
       console.log('pollWeb3 action being executed');
