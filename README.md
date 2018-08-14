@@ -94,7 +94,7 @@
 
     <br />
 
-    ```
+    ```solidity
     /* Mortal.sol */
 
     pragma solidity ^0.4.10;
@@ -146,8 +146,8 @@
         require(_number > 0 && _number <= 10);
         require(msg.value >= minBet);
 
-        // uint winningNumber = block.number % 10 + 1;
-        uint winningNumber = 3;
+        uint winningNumber = block.timestamp % 10 + 1;
+
         if (_number == winningNumber) {
           /* 상금 계산식 */
           uint amountWon = msg.value * (100 - houseEdge)/10;
@@ -184,3 +184,55 @@
     - ***상금 계산 방식:*** `msg.value * (100 - houseEdge)/10` 다음 식의 결과 값이 상금이 됩니다. `msg.value`는 베팅금액이고 `houseEdge`는 베팅 수수료입니다. 상금은 컨트랙트 잔고에서 빠져나갑니다. 따라서 컨트랙트 잔고에 충분한 금액이 있어야겠죠?
 
     - ***checkContractBalance:*** 컨트랙트 잔고를 확인하는 함수입니다.
+
+  <br />
+
+- ### Remix에서 테스트해보기
+
+  ![1](https://user-images.githubusercontent.com/31656287/44123700-8614eaae-a064-11e8-87e9-5a29a7ec9248.png)
+
+   위 코드를 컴파일한 모습입니다. 정상적으로 컴파일되었습니다.
+
+  <br />
+
+  ![2](https://user-images.githubusercontent.com/31656287/44123744-ba184f6c-a064-11e8-97d1-6d2d59080a26.png)
+
+   Run 탭으로 이동합니다. Environment를 JavaScript VM으로 설정한 뒤에, Gas limit을 적고 Value에는 500 'ether'를 넣습니다. Value에 들어가는 값은 컨트랙트 잔고에 들어갑니다. 이 금액은 이후 당첨된 유저에게 상금을 지급할 때 사용되죠. Deploy 칸에는 생성자에 들어가는 파라미터를 적습니다. (최소 베팅액과 베팅 수수료)
+
+  <br />
+
+  ![3](https://user-images.githubusercontent.com/31656287/44123857-2f90c008-a065-11e8-8aed-dd397ffa87b1.png)
+
+   정상적으로 컨트랙트가 배포되었고 checkContractBalance를 통해서 잔고를 확인하였습니다. 컨트랙트 잔고에 500 ether가 있음을 확인할 수 있습니다. (Wei 단위로) 저의 JavaScript VM 계정에는 현재 400 ether가 존재합니다.
+
+  <br />
+
+  ![4](https://user-images.githubusercontent.com/31656287/44123888-5c51a92c-a065-11e8-89a9-c9a92963e076.png)
+
+  20 ether를 3번 숫자에 걸고 베팅을 해봤습니다.
+
+  <br />
+
+  ![5](https://user-images.githubusercontent.com/31656287/44123913-772b2228-a065-11e8-9079-1b7662ffdcaa.png)
+
+   보기 좋게 패배했습니다. 여기서 주목할 부분은 아래 로그를 보시면 현재 event의 인자들이 표시된다는 점입니다. 이를 통해서 위닝넘버는 몇이었고 승패여부와 이에 따른 보상액을 확인할 수 있습니다.
+
+  <br />
+
+  ![6](https://user-images.githubusercontent.com/31656287/44124043-24e0a6d6-a066-11e8-847d-5020eb599dd4.png)
+
+   20 ether 씩 3번의 시도만에 이겼습니다. 잔고가 340 ether에서 520 ether가 된 모습입니다. 계산 로직상 9배의 이득을 취합니다. 20 ether면 기댓값보다 작은 값임에도 체감상으론 그렇지 않은 것 같습니다. ㅋㅋ
+
+  <br />
+
+   고생하셨습니다. 이번 편은 여기에서 마치겠습니다. 다음 편에서는 web3와 Vue 및 Vuex를 이용하여 웹 프론트를 구성하고 MetaMask와 연동하는 작업을 해보겠습니다.
+
+   프로젝트 전체 코드는 다음 링크를 가시면 보실 수 있습니다. https://github.com/MakeHoney/DApp_with_vue
+
+  **\* 이 튜토리얼은 아래 참조 링크를 바탕으로 코드 상의 경고 또는 에러를 수정하여 작성되었음을 알려드립니다 **
+
+  <br />
+
+- ### References
+
+  - https://itnext.io/create-your-first-ethereum-dapp-with-web3-and-vue-js-c7221af1ed82

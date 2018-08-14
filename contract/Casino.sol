@@ -27,8 +27,8 @@ contract Casino is Mortal{
     require(_number > 0 && _number <= 10);
     require(msg.value >= minBet);
 
-    // uint winningNumber = block.number % 10 + 1;
-    uint winningNumber = 3;
+    uint winningNumber = block.timestamp % 10 + 1;
+
     if (_number == winningNumber) {
       /* 상금 계산식 */
       uint amountWon = msg.value * (100 - houseEdge)/10;
