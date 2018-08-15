@@ -179,7 +179,7 @@
 
     - ***fallback 함수:*** fallback 함수는 존재하지 않는 함수가 실행되거나, 필요한 데이터 없이 함수가 실행될 때, 또는 데이터 없이 컨트랙트가 이더를 받은 상황 (이를 plain ether를 받았다고 합니다.)등 에 실행되는 함수입니다. 따라서 이런 상황에 대처할 수 있도록 fallback 함수 내부에 로직을 구현합니다. 이번 예제의 경우 revert 함수를 실행되게끔 하였습니다. revert에 대한 자세한 내용은 다음 링크를 참조해주세요.
 
-      https://medium.com/blockchannel/the-use-of-revert-assert-and-require-in-solidity-and-the-new-revert-opcode-in-the-evm-1a3a7990e06e
+      <https://medium.com/blockchannel/the-use-of-revert-assert-and-require-in-solidity-and-the-new-revert-opcode-in-the-evm-1a3a7990e06e>
 
     - ***상금 계산 방식:*** `msg.value * (100 - houseEdge)/10` 다음 식의 결과 값이 상금이 됩니다. `msg.value`는 베팅금액이고 `houseEdge`는 베팅 수수료입니다. 상금은 컨트랙트 잔고에서 빠져나갑니다. 따라서 컨트랙트 잔고에 충분한 금액이 있어야겠죠?
 
