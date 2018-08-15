@@ -6,6 +6,7 @@ contract Ownable {
     owner = msg.sender;
   }
 
+  /* 접근 제어자 선언 */
   modifier onlyOwner {
     require(msg.sender == owner);
     _;

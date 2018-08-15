@@ -1,6 +1,6 @@
 ## web3와 Vue.js를 이용한 첫 이더리움 DApp 만들기 (1)
 
-- ### DApp 설명
+- ## DApp 설명
 
   >  저희가 구현할 DApp은 간단합니다. 유저는 1에서 10 사이의 수에 일정 금액을 베팅합니다. 만약 유저가 선택한 숫자가 당첨될 경우 베팅 금액의 10배를 받는 심플한 Casino DApp입니다.
 
@@ -12,7 +12,7 @@
 
   <br />
 
-- ### 필요 도구
+- ## 필요 도구
 
    저희는 Remix를 이용하여 스마트 컨트랙트를 MetaMask Ropsten 테스트넷에 배포할 예정입니다.  (https://remix.ethereum.org) 프로젝트에 앞서 node.js와 npm은 설치되어 있다고 가정하겠습니다.
 
@@ -28,7 +28,7 @@
 
   <br />
 
-- ### 프로젝트 셋업
+- ## 프로젝트 셋업
 
    저희가 구현할 프론트엔드 애플리케이션과 MetaMask의 테스트넷을 연결하기 위해서는 스마트 컨트랙트 address와 ABI가 필요합니다. 또한 MetaMask는 브라우저 상에서 돌아가기 때문에 web3와 Vue.js를 이용하면 프론트엔드 상에서도 충분한 상호작용이 가능합니다.
 
@@ -52,7 +52,7 @@
 
 <br />
 
-- ### 스마트 컨트랙트 작성
+- ## 스마트 컨트랙트 작성
 
   컨트랙트 작성에 앞서 알아야 할 몇 가지가 있습니다.
 
@@ -68,7 +68,7 @@
 
      <br />
 
-  - #### Ownable 컨트랙트와 Mortal 컨트랙트 작성
+  - ### Ownable 컨트랙트와 Mortal 컨트랙트 작성
 
     ```solidity
     /* Ownable.sol */
@@ -187,7 +187,7 @@
 
   <br />
 
-- ### Remix에서 테스트해보기
+- ## Remix에서 테스트해보기
 
   ![1](https://user-images.githubusercontent.com/31656287/44123700-8614eaae-a064-11e8-87e9-5a29a7ec9248.png)
 
@@ -233,6 +233,6 @@
 
   <br />
 
-- ### References
+- ## References
 
   - <https://itnext.io/create-your-first-ethereum-dapp-with-web3-and-vue-js-c7221af1ed82>
