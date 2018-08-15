@@ -227,7 +227,7 @@
 
    고생하셨습니다. 이번 편은 여기에서 마치겠습니다. 다음 편에서는 web3와 Vue 및 Vuex를 이용하여 웹 프론트를 구성하고 MetaMask와 연동하는 작업을 해보겠습니다.
 
-   프로젝트 전체 코드는 다음 링크를 가시면 보실 수 있습니다. https://github.com/MakeHoney/DApp_with_vue
+   프로젝트 전체 코드는 다음 링크를 가시면 보실 수 있습니다. <https://github.com/MakeHoney/DApp_with_vue>
 
   **\* 이 튜토리얼은 아래 참조 링크를 바탕으로 코드 상의 경고 또는 에러를 수정하여 작성되었음을 알려드립니다 **
 
@@ -235,4 +235,4 @@
 
 - ### References
 
-  - https://itnext.io/create-your-first-ethereum-dapp-with-web3-and-vue-js-c7221af1ed82
+  - <https://itnext.io/create-your-first-ethereum-dapp-with-web3-and-vue-js-c7221af1ed82>
