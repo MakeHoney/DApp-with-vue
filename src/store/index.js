@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import state from './state';
 import getWeb3 from '../util/getWeb3';
 import pollWeb3 from '../util/pollWeb3';
+import getContract from '../util/getContract';
 
 Vue.use(Vuex);
 
