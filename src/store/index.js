@@ -26,6 +26,10 @@ export const store = new Vuex.Store({
      console.log('pollWeb3Instance mutation being executed', payload);
      state.web3.coinbase = payload.coinbase;
      state.web3.balance = parseInt(payload.balance, 10);
+   },
+   registerContractInstance(state, payload) {
+     console.log('Casino contract instance: ', payload);
+     state.contractInstance = () => payload;
    }
  },
  actions: {
@@ -37,6 +41,14 @@ export const store = new Vuex.Store({
        commit('registerWeb3Instance', result);
      } catch (err) {
        console.log('error in action registerWeb3', err);
+     }
+   },
+   async getContractInstance({ commit }) {
+     try {
+       let result = await getContract;
+       commit('registerContractInstance', result);
+     } catch (err) {
+       console.log('error in action getContractInstance', err);
      }
    }
  }
