@@ -112,4 +112,10 @@ li:active{
 *{
  color: #444444;
 }
+#has-won {
+  color: green;
+}
+#has-lost {
+  color:red;
+}
 </style>
