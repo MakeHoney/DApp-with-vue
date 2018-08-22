@@ -227,8 +227,6 @@
 
    고생하셨습니다. 이번 편은 여기에서 마치겠습니다. 다음 편에서는 web3와 Vue 및 Vuex를 이용하여 웹 프론트를 구성하고 MetaMask와 연동하는 작업을 해보겠습니다.
 
-   프로젝트 전체 코드는 다음 링크를 가시면 보실 수 있습니다. <https://github.com/MakeHoney/DApp_with_vue>
-
   ***\* 이 튜토리얼은 아래 참조 링크를 바탕으로 코드 상의 경고 또는 에러를 수정하여 작성되었음을 알려드립니다***
 
   <br />
@@ -652,14 +650,14 @@
 
   ```javascript
   /* util/pollWeb3.js */
-  
+
   import Web3 from 'web3';
   import { store } from '../store';
-  
+
   let pollWeb3 = state => {
     let web3 = window.web3;
     web3 = new Web3(web3.currentProvider);
-  
+
     setInterval(() => {
       if(web3 && store.state.web3.web3Instance) {
         if(web3.eth.coinbase !== store.state.web3.coinbase) {
@@ -689,7 +687,7 @@
       }
     }, 500);
   }
-  
+
   export default pollWeb3;
   ```
 
@@ -697,7 +695,7 @@
 
   ```javascript
   /* store/index.js */
-  
+
   mutations: {
      registerWeb3Instance (state, payload) {
        console.log('registerWeb3instance Mutation being executed', payload);
@@ -744,17 +742,17 @@
 
   ```javascript
   /* util/getContract.js */
-  
+
   import Web3 from 'web3';
   import { address, ABI } from './constants/casinoContract';
-  
+
   let getContract = new Promise((resolve, reject) => {
     let web3 = new Web3(window.web3.currentProvider);
     let casinoContract = web3.eth.contract(ABI);
     let casinoContractInstance = casinoContract.at(address);
     resolve(casinoContractInstance);
   });
-  
+
   export default getContract;
   ```
 
@@ -764,7 +762,7 @@
 
   ```vue
   <!-- casino-component.vue -->
-  
+
   export default {
    name: ‘casino’,
    mounted () {
@@ -778,7 +776,7 @@
 
   ```javascript
   /* action */
-  
+
   async getContractInstance({ commit }) {
     try {
       let result = await getContract;
@@ -791,7 +789,7 @@
 
   ```javascript
   /* mutation */
-  
+
   registerContractInstance(state, payload) {
     console.log('Casino contract instance: ', payload);
     state.contractInstance = () => payload;
@@ -807,8 +805,8 @@
    스마트 컨트랙트와의 상호작용을 위해서는 먼저 브라우저 상에서 보여질 템플릿을 작성한 뒤에 템플릿에 상응하는 data와 methods 프로퍼티를 추가해야 합니다.
 
   ```vue
-  <!-- casino-component.vue --> 
-  
+  <!-- casino-component.vue -->
+
   data () {
      return {
        amount: null,
@@ -822,7 +820,7 @@
 
   ```vue
   <!-- casino-component -->
-  
+
   methods: {
     clickNumber (event) {
       console.log(event.target.innerHTML, this.amount)
@@ -861,7 +859,7 @@
 
   ```vue
   <!-- casino-component.vue -->
-  
+
   <template>
    <div class="casino">
      <h1>Welcome to the Casino</h1>
@@ -891,7 +889,7 @@
     </div>
    </div>
   </template>
-  
+
   <style scoped>
   .casino {
    margin-top: 50px;
@@ -942,7 +940,7 @@
 
 - ## Ropsten 테스트넷에 컨트랙트 배포하기
 
-   Ropsten 테스트넷에 컨트랙트를 배포하기 위해서는 Part.1의 과정에서 environment를 javascriptVM로 설정했던 것을 injected Web3로 설정한 뒤에 동일하게 배포를 하시면 됩니다. 
+   Ropsten 테스트넷에 컨트랙트를 배포하기 위해서는 Part.1의 과정에서 environment를 javascriptVM로 설정했던 것을 injected Web3로 설정한 뒤에 동일하게 배포를 하시면 됩니다.
 
    배포를 성공적으로 마치면 remix 콘솔창에 EtherScan의 링크가 나올 것이고 들어가면 다음과 같이 컨트랙트 배포가 된 것을 확인해 보실 수 있습니다.
 
@@ -956,7 +954,7 @@
 
   ![2](https://user-images.githubusercontent.com/31656287/44467843-e0981500-a65e-11e8-80ba-bfda109f35c0.png)
 
-  
+
 
    마지막으로 이렇게 알아낸 정보들을 util/constants 아래에 casinoContract.js를 생성하여 다음과 같이 작성하면 마침내 저희 DApp이 완성됩니다!
 
@@ -972,23 +970,23 @@
 
    이번 주제는 필수적인 부분이 아닙니다. 위 과정에서 만족하셨으면 넘어가셔도 무방합니다!
 
-  여기서는 hello-metamask 컴포넌트를 수정할 계획입니다. 먼저 Vuex의 mapState 헬퍼를 시용하여 템플릿에 분기문을 작성하고 HTML이 그에 따라 다르게 렌더링되도록 할 것입니다. 
+  여기서는 hello-metamask 컴포넌트를 수정할 계획입니다. 먼저 Vuex의 mapState 헬퍼를 시용하여 템플릿에 분기문을 작성하고 HTML이 그에 따라 다르게 렌더링되도록 할 것입니다.
 
    이에 앞서 아이콘 사용을 위해서 main.js에서 다음과 같이 css를 import해줍니다.
 
   ```javascript
   /* main.js */
-  
+
   import 'font-awesome/css/font-awesome.css'
   ```
 
-  
+
 
    최종 hello-metamask.vue의 코드는 다음과 같습니다.
 
   ```vue
   <!-- hello-metamask.vue -->
-  
+
   <template lang="html">
     <div class='metamask-info'>
       <p v-if="isInjected" id="has-metamask"><i aria-hidden="true" class="fa fa-check"></i> Metamask installed</p>
@@ -998,7 +996,7 @@
       <p>Balance: {{ balance }} Wei </p>
     </div>
   </template>
-  
+
   <script>
     import {NETWORKS} from '../util/constants/networks'
     import {mapState} from 'vuex'
@@ -1012,7 +1010,7 @@
       })
     }
   </script>
-  
+
   <style scoped>
   #has-metamask {
     color: green;
@@ -1026,7 +1024,7 @@
 
 - ## 마무리
 
-   저희가 여태까지 만든 DApp의 전체 코드는  <https://github.com/MakeHoney/DApp_with_vue> 이곳에서 확인해 보실 수 있습니다! 여기까지 잘 따라오셨다면 터미널에서 앱을 실행 시킨 뒤에 localhost:8080으로 접속하시어 베팅을 해보시면 아래와 같은 결과를 보실 수 있으실 겁니다.
+   여기까지 잘 따라오셨다면 터미널에서 앱을 실행 시킨 뒤에 localhost:8080으로 접속하시어 베팅을 해보시면 아래와 같은 결과를 보실 수 있으실 겁니다.
 
   ![3](https://user-images.githubusercontent.com/31656287/44471710-70da5800-a667-11e8-9a3d-1a25ad865dba.png)
 
@@ -1039,5 +1037,3 @@
 - ## References
 
   - <https://itnext.io/create-your-first-ethereum-dapp-with-web3-and-vue-js-part-3-dc4f82fba4b4>
-
-  
